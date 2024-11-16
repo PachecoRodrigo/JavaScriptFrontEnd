@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Agregamos los vinculo de CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/contact.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <!-- Agregamos las fuentes de google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Delius&family=Sofia+Sans:wght@1..1000&display=swap" rel="stylesheet">
+    <title>Iniciar Secion</title>
+</head>
+<body>
+    <header>
+        <!-- Agregamos la barra de navecagion -->
+        <nav class="sidenav">
+            <div class="contr">
+                
+                <!-- Agregamos el logo -->
+                <div class="liLogo">
+                    <a href="#"><img src="/images/svg/honor-svgrepo-com.svg" alt="logo" class="logo"></a>
+                </div>
+                
+                <!-- Agregamos el menu de icono para celular -->
+                <div class="Icon">
+
+                    <input type="radio" name="menu" id="menu">
+                    <input type="radio" name="menu" id="closed" checked>
+
+                    <div class="btnIcon">
+                        <label class="menu1" for="menu"><img class="imgBtn" src="/images/svg/menu-svgrepo-com.svg" alt="menu"></label>
+                        <label class="closed1" for="closed"><img class="imgBtn" src="/images/svg/xmark-svgrepo-com.svg" alt="closed"></label>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Opciones de menu -->
+            <ul class="topnav">
+                <li class="item"><a href="/index">Inicio</a></li>
+                <li class="item"><a href="/pages/aboutUs">Acerca</a></li>
+                <li class="item"><a href="/pages/products">Productos</a></li>
+                <li class="item"><a href="#" class="active">Contacto</a></li>
+                <li class="item"><a href="/pages/login">Acceder</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="body">
+        <form action="https://formspree.io/f/mldenykw" method="post" class="container">
+                <h1>Envianos tu consulta</h1>
+                <div class="grupo">
+                    <input type="text" name="" id="" required><span class="barra"></span>
+                    <label>Nombre</label>
+                </div>
+                <div class="grupo">
+                    <input type="email" name="" id="" required><span class="barra"></span>
+                    <label>Email</label>
+                </div>
+                <div class="grupo">
+                    <input type="number" name="" id="" required><span class="barra"></span>
+                    <label>Celular</label>
+                </div>
+                <div class="grupo">
+                    <textarea name="" id="" rows="3" required></textarea><span class="barra"></span>
+                    <label>Mensaje</label>
+                </div>
+                <button type="submit">Registrar</button>
+        </form>
+    </main>
+
+    <!-- Agregamos el pie de pagina -->
+    <footer>
+        <section class="main-footer">
+            <div class="footer-informations">
+                <h3>Mapa del sitio</h3>
+                <ul class="listInformations">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Acerca de</a></li>
+                    <li><a href="#">Productos</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </div>
+            <div class= "social">
+                <ul class="social-ul">
+                    <li><a href=""class="redes-link"><img src="/images/social/faceicon.png" alt="facebook"></a></li>
+                    <li><a href=""class="redes-link"><img src="/images/social/instaicon.png" alt="instagram"></a></li>
+                    <li><a href=""class="redes-link"><img src="/images/social/twittericon.png" alt="twitter"></a></li>
+                    <li><a href=""class="redes-link"><img src="/images/social/youtubeicon.png" alt="youtube"></a></li>
+                </ul>
+            </div>
+        </section>
+        <div class= "law_footer">
+            <a href="" class="footer-link">Terminos y condiciones</a>
+            <a href="" class="footer-link">FAQ</a>
+        </div>
+    </footer>
+</body>
+</html>

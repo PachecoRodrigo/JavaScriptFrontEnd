@@ -1,0 +1,167 @@
+* {
+  font-family: "Delius", cursive;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+html {
+  min-height: 100%;
+  position: relative;
+}
+.body {
+  margin-bottom: 173px;
+}
+/* --------------------------- */
+/*  ACA MODIFICAMOS EL NAVBAR  */
+/* --------------------------- */
+header{
+  background-color: rgb(17, 17, 17);
+}
+.sidenav{
+  display: flex;
+  /* flex-direction: row; */
+  justify-content:space-between;
+  /* width: 90%; */
+  height: 50px;
+  /* margin: auto; */
+  align-items: center;
+}
+.contr{
+  height: 50px;
+}
+.liLogo{
+  height: 50px;
+}
+.logo{
+  width: 150px;
+  height: 100%;
+}
+
+.topnav {
+  display: flex;
+  /* justify-content: center; */
+  height: 100%;
+  list-style-type: none;
+}
+.item{
+  width: 100%;
+  height: 50px;
+}
+
+ul.topnav li a {
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  padding: 14px 20px;
+  color: white;
+}
+
+ul.topnav li a:hover {
+  background-color:rgb(5, 255, 230);
+  color: #111;
+  transition: 150ms ease-in-out;
+  scale: 1.01;
+}
+
+ul.topnav li a.active {
+  background-color: rgb(5, 255, 230);
+  color: rgb(85, 85, 85);
+  font-weight:bolder;
+}
+
+ul.topnav li.right {
+  float: left;
+}
+
+/* --------------------------- */
+/* MODIFICAMOS EL BOTON MENU */
+/* --------------------------- */
+/* Mantenemos oculto el boton */
+.Icon{
+  visibility: hidden;
+}
+/* Ocultamos los inputs */
+.Icon input{
+  visibility: hidden;
+  display: none;
+}
+/* Modificamos el boton y alineamos */
+.btnIcon{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+  
+/* Le damos las medidas al Icono menu  */
+.imgBtn{
+  width: 100%;
+}
+
+/* Modificamos las propiedades de los botones */
+.btnIcon label{
+  width: 40px;
+  height: 40px;
+  background-color: crimson;
+  cursor: pointer;
+  z-index: 1;
+  margin: 5px;
+}
+
+.Icon input:nth-child(1):checked ~ .btnIcon .menu1{
+  display: none;
+}
+.Icon input:nth-child(2):checked ~ .btnIcon .closed1{
+  display: none;
+}
+
+
+@media all and (max-width: 1000px) {
+  .sidenav {
+    height: auto;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .topnav{
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .Icon{
+    visibility: visible;
+  }
+  .contr{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .sidenav .Icon input:nth-child(1):checked ~ .btnIcon .closed1{
+    display: none;
+  }
+  .Icon input:nth-child(2):checked ~ .btnIcon .closed1{
+    display: none;
+  }
+  .sidenav {
+    width: 100%;
+    height: auto;
+    flex-flow: column wrap;
+  }
+  .topnav {
+    display: none;
+    height: auto;
+    width: 100%;
+    flex-flow: column wrap;
+    justify-content: space-around;
+    padding: 0;
+  }
+  .sidenav a { 
+    text-align: center; 
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255,0.3); 
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+  }
+  .sidenav li:last-of-type a {
+    border-bottom: none;
+  }
+}
