@@ -20,109 +20,100 @@
 <body>
     <header>
         <!-- Agregamos la barra de navecagion -->
-        <nav class="sidenav">
-            <div class="contr">
-                
-                <!-- Agregamos el logo -->
-                <div class="liLogo">
-                    <a href="#"><img src="/images/svg/honor-svgrepo-com.svg" alt="logo" class="logo"></a>
-                </div>
-                
-                <!-- Agregamos el menu de icono para celular -->
-                <div class="Icon">
-
-                    <input type="radio" name="menu" id="menu">
-                    <input type="radio" name="menu" id="closed" checked>
-
-                    <div class="btnIcon">
-                        <label class="menu1" for="menu"><img class="imgBtn" src="/images/svg/menu-svgrepo-com.svg" alt="menu"></label>
-                        <label class="closed1" for="closed"><img class="imgBtn" src="/images/svg/xmark-svgrepo-com.svg" alt="closed"></label>
-                    </div>
-                </div>
-                
+        <nav class="nav-tabs navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                <img src="/images/svg/honor-svgrepo-com.svg" alt="Logo" width="150" height="50">
+              </a>
+              <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse collapse" id="navbarSupportedContent" style=" ">
+                <ul class="nav-underline navbar-nav mx-auto p-2">
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/pages/aboutUs">Acerca</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/pages/products">Productos</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/pages/contact">Contacto</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/pages/login">Acceder</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/pages/cart">Carrito</a></li>
+                </ul>
+                <form class="d-flex" role="search">
+                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                  <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+              </div>
             </div>
-            
-            <!-- Opciones de menu -->
-            <ul class="topnav">
-                <li class="item"><a href="#" class="active">Inicio</a></li>
-                <li class="item"><a href="/pages/aboutUs">Acerca</a></li>
-                <li class="item"><a href="/pages/products">Productos</a></li>
-                <li class="item"><a href="/pages/contact">Contacto</a></li>
-                <li class="item"><a href="/pages/login">Acceder</a></li>
-            </ul>
         </nav>
     </header>
 
     <main class="body">
         <!-- Agregamos el carrusel -->
-        <section class="containerSlider">
-            <article class="slider">
-                
-                <input type="radio" name="slider" id="slideOne" checked>
-                <input type="radio" name="slider" id="slideTwo">
-                <input type="radio" name="slider" id="slideThree">
-                
-                <div class="buttons">
-                    <label for="slideOne"></label>
-                    <label for="slideTwo"></label>
-                    <label for="slideThree"></label>
+        <section id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/slider/apple-1282241_1280.jpg" class="mx-auto d-block imgSlider" alt="First Slide">
                 </div>
-                
-                <div class="content">
-                    <div class="firstSlide">
-                        <img class="imgSlider" src="/images/slider/apple-1282241_1280.jpg" alt="">
-                    </div>
-                    <div class="secondSlide">
-                        <img class="imgSlider" src="/images/slider/coffee-5518359_1280.jpg" alt="">
-                    </div>
-                    <div class="thirdSlide">
-                        <img class="imgSlider" src="/images/slider/desk-1140699_1280.jpg" alt="">
-                    </div>
+                <div class="carousel-item">
+                    <img src="/images/slider/coffee-5518359_1280.jpg" class="mx-auto d-block imgSlider" alt="Second Slide">
                 </div>
-
-            </article>
-            
+                <div class="carousel-item">
+                    <img src="/images/slider/desk-1140699_1280.jpg" class="mx-auto d-block imgSlider" alt="Third Slide">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </section>
         <!-- Agregamos Productos destacados -->
         <section class="featured-products">
             <article class="card">
                 <img class="imgProduct" src="/images/products/imac-2568270_1280.jpg" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
                 <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vero accusantium.</p>
                 <button class="btnCart">Agregar</button>
             </article>
             <article class="card">
                 <img class="imgProduct" src="/images/products/real-estate-6893060_1280.jpg" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
                 <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vero accusantium, sequi expedita molestiae molestias velit incidunt.</p>
                 <button class="btnCart">Agregar</button>
             </article>
             <article class="card">
                 <img class="imgProduct" src="/images/products/vintage-office-4018107_1280.jpg" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
-                <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vero accusantium, sequi expedita molestiae molestias velit incidunt, amet dolore quos ex? Quae aut.</p>
+                <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                 <button class="btnCart">Agregar</button>
             </article>
             <article class="card">
                 <img class="imgProduct" src="/images/products/Gemini_Generated_Image_gn3kg1gn3kg1gn3k.jpg" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
                 <p class="description">Lorem ipsum dolor sit amet consectetur.</p>
                 <button class="btnCart">Agregar</button>
             </article>
             <article class="card">
                 <img class="imgProduct" src="/images/products/imac-2568270_1280.jpg" height:75%" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
                 <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vero accusantium, sequi expedita molestiae molestias velit incidunt, amet dolore quos ex? Quae aut, illo voluptas facilis nemo architecto illum voluptates?</p>
                 <button class="btnCart">Agregar</button>
             </article>
             <article class="card">
                 <img class="imgProduct" src="/images/products/real-estate-6893060_1280.jpg" alt="">
-                <h2 class="title">Productos Destacado</h2>
+                <h3 class="title">Productos Destacado</h3>
                 <h3 class="price">$ 12.500</h3>
                 <p class="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati vero accusantium, sequi expedita molestiae.</p>
                 <button class="btnCart">Agregar</button>
@@ -130,7 +121,7 @@
         </section>
         <!-- Agregamos las reseñas -->
         <section class="reviews">
-            <h2>Reseñas</h2>
+            <h3>Reseñas</h3>
             <article class="review"><img class="imgReview" src="" alt=""></article>
             <article class="review"><img class="imgReview" src="" alt=""></article>
             <article class="review"><img class="imgReview" src="" alt=""></article>
@@ -167,5 +158,6 @@
     <!-- Agregamos los script de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="/javascript/script.js"></script>
 </body>
 </html>
