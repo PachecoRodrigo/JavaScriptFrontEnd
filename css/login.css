@@ -21,7 +21,7 @@ h1{
   font-weight: 800;
 }
 /* Le damos forma al formulario */
-form{
+.container{
   background: #fff;
   width: 30%;
   padding: 10px 0;
@@ -31,7 +31,7 @@ form{
 }
 
 /* Alinemos el contenido del formulario */
-form .grupo{
+.container .grupo{
   position: relative;
   margin: 45px;
 }
@@ -63,7 +63,7 @@ textarea:valid~label{
     color: #2196F3;
 }
 /* Agregamos efectos al label */
-label{
+.container label{
   color: var(--colorTextos);
   font-size: 16px;
   position: absolute;
@@ -73,18 +73,18 @@ label{
   pointer-events: none;
 }
 /* Al seleccionar el area se cambia la barra */
-input:focus~.barra::before,
-textarea:focus~.barra::before{
+input:focus~.barraForm::before,
+textarea:focus~.barraForm::before{
   width: 100%;
 }
 /* Propiedades de la barra debajo de las areas de texto */
-.barra{
+.barraForm{
     position: relative;
     display: block;
     width: 100%;
 }
 /* Le damos las propiedades a la barra */
-.barra::before{
+.barraForm::before{
     content: '';
     height: 2px;
     width: 0%;
