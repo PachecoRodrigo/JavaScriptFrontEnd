@@ -33,8 +33,8 @@
     align-content: center;
 }
 .description{
-    object-fit: contain;
-    text-align: justify;
+    object-fit:contain;
+    text-align:center;
     height: 18%;
 }
 .card:hover {

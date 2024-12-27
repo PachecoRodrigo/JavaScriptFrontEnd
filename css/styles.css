@@ -4,7 +4,7 @@
   font-weight: 400;
   margin: 0;
   padding: 0;
-  
+  box-sizing: border-box;
 }
 html {
   min-height: 100%;
@@ -16,7 +16,8 @@ body{
   min-height: 100vh;
   grid-template-rows: auto 1fr auto;
 }
-.body {
+.content{
+  min-height: fit-content;
   margin-bottom: 173px;
 }
 /* --------------------------- */

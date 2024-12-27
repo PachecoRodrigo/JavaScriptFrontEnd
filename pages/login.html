@@ -48,23 +48,30 @@
         </nav>
     </header>
 
-    <main class="body">
-        <form action="https://formspree.io/f/mldenykw" method="post" class="container">
-                <h1>Registrate</h1>
-                <div class="grupo">
-                    <input type="text" name="" id="" required><span class="barraForm"></span>
-                    <label>Nombre</label>
+    <main class="content">
+        <form action="https://formspree.io/f/mldenykw" method="post" class="container needs-validation" novalidate>
+            <h1>Registrate</h1>
+        
+            <div class="grupo form-floating position-relative mb-3">
+                <input type="email" name="email" id="floatingEmail" class="form-control" placeholder="Email" required>
+                <label for="floatingEmail">Email</label>
+                <div class="valid-tooltip">Looks good!</div>
+                <div class="invalid-tooltip">Por favor, introduce un correo electrónico válido.</div>
+            </div>
+        
+            <div class="grupo form-floating position-relative mb-3">
+                <input type="password" name="password" id="floatingPassword" class="form-control" placeholder="Password" required 
+                       minlength="8" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                <label for="floatingPassword">Password</label>
+                <div class="valid-tooltip">Looks good!</div>
+                <div class="invalid-tooltip">
+                    La contraseña debe tener al menos 8 caracteres, incluir una letra mayúscula, una letra minúscula y un número.
                 </div>
-                <div class="grupo">
-                    <input type="text" name="" id="" required><span class="barraForm"></span>
-                    <label>Apellido</label>
-                </div>
-                <div class="grupo">
-                    <input type="email" name="" id="" required><span class="barraForm"></span>
-                    <label>Email</label>
-                </div>
-                <button type="submit">Registrar</button>
+            </div>
+        
+            <button type="submit" class="btn-primary btnSubmit">Registrar</button>
         </form>
+        
     </main>
 
     <!-- Agregamos el pie de pagina -->
@@ -94,7 +101,9 @@
         </div>
     </footer>
     <!-- Agregamos los script de Bootstrap -->
+    <!-- Agregamos los script de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="/js/cntForm.js"></script>
 </body>
 </html>
