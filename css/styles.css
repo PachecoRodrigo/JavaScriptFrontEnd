@@ -17,6 +17,7 @@ body{
   grid-template-rows: auto 1fr auto;
 }
 .content{
+  padding: 20px;
   min-height: fit-content;
   margin-bottom: 173px;
 }
@@ -39,4 +40,31 @@ body{
 /* Modificamos la altura de cada imagen */
 .imgSlider{
   height: 500px;
+}
+
+/* --------------------------- */
+/* ACA MODIFICAMOS LA VENTAN FLOTANTE DEL CARRITO */
+/* --------------------------- */
+.offcanvas-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-color: #212529; 
+}
+  
+/* Color de fondo del offcanvas */
+.offcanvas-footer .btn {
+  margin-top: 10px;
+}
+
+.modal-body p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,198 +1,203 @@
-   // Configuración de productos con stock y descuentos
-   const productos = {
-    laptop: { 
-        nombre: 'Laptop', 
-        precio: 800, 
-        stock: 10,
-        descuento: 0.1  // 10% de descuento
-    },
-    smartphone: { 
-        nombre: 'Smartphone', 
-        precio: 500, 
-        stock: 15,
-        descuento: 0.05  // 5% de descuento
-    },
-    tablet: { 
-        nombre: 'Tablet', 
-        precio: 300, 
-        stock: 8,
-        descuento: 0  // Sin descuento
-    }
-};
-
-// Constante para el IVA
-const IVA = 0.21;  // 21% de IVA
-
-// Inicializar el carrito al cargar la página
-document.addEventListener('DOMContentLoaded', cargarCarrito);
-
-function agregarAlCarrito(nombre, precio, productoKey) {
-    // Obtener el producto específico
-    const producto = productos[productoKey];
-
-    // Validar stock
-    if (producto.stock <= 0) {
-        alert('¡Producto agotado!');
-        return;
-    }
-
-    // Obtener el carrito actual del localStorage
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Agregar nuevo producto
-    carrito.push({ 
-        nombre: producto.nombre, 
-        precio: producto.precio,
-        productoKey: productoKey
-    });
-    
-    // Reducir stock
-    producto.stock--;
-    document.getElementById(`stock-${productoKey}`).textContent = producto.stock;
-    
-    // Guardar en localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    
-    // Actualizar vista del carrito
-    renderizarCarrito();
-}
-
 function renderizarCarrito() {
-    const listaCarrito = document.getElementById('lista-carrito');
-    const subtotalCarrito = document.getElementById('subtotal-carrito');
-    const descuentoCarrito = document.getElementById('descuento-carrito');
-    const ivaCarrito = document.getElementById('iva-carrito');
-    const totalCarrito = document.getElementById('total-carrito');
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Limpiar lista anterior
-    listaCarrito.innerHTML = '';
-    
-    // Totales iniciales
-    let subtotal = 0;
-    let descuentoTotal = 0;
-    
-    // Renderizar cada producto
-    carrito.forEach((producto, index) => {
-        const productoInfo = productos[producto.productoKey];
-        const li = document.createElement('li');
-        
-        // Calcular descuento individual
-        const descuentoProducto = productoInfo.descuento * producto.precio;
-        const precioConDescuento = producto.precio - descuentoProducto;
-        
-        li.innerHTML = `
-            ${producto.nombre} - $${producto.precio} 
-            ${productoInfo.descuento > 0 ? 
-                `<span class="descuento">(Desc. ${(productoInfo.descuento * 100).toFixed(0)}%: 
-                -$${descuentoProducto.toFixed(2)})</span>` 
-                : ''}
-        `;
-        
-        // Botón para eliminar producto
-        const botonEliminar = document.createElement('button');
-        botonEliminar.textContent = 'Eliminar';
-        botonEliminar.onclick = () => eliminarDelCarrito(index);
-        
-        li.appendChild(botonEliminar);
-        listaCarrito.appendChild(li);
-        
-        // Sumar al subtotal y descuentos
-        subtotal += producto.precio;
-        descuentoTotal += descuentoProducto;
-    });
-    
-    // Calcular IVA
-    const ivaTotal = (subtotal - descuentoTotal) * IVA;
-    const total = subtotal - descuentoTotal + ivaTotal;
-    
-    // Actualizar totales
-    subtotalCarrito.textContent = subtotal.toFixed(2);
-    descuentoCarrito.textContent = descuentoTotal.toFixed(2);
-    ivaCarrito.textContent = ivaTotal.toFixed(2);
-    totalCarrito.textContent = total.toFixed(2);
+	const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	const listaCarrito = document.getElementById('lista-carrito');
+	const subtotalElemento = document.getElementById('subtotal-carrito');
+	const totalElemento = document.getElementById('total-carrito');
+	let subtotal = 0;
+
+	listaCarrito.innerHTML = '';
+
+	carrito.forEach((producto, index) => {
+		const item = document.createElement('li');
+		item.classList.add('list-group-item');
+		item.innerHTML = `
+			<div class="d-flex align-items-center justify-content-between">
+				<div>
+					<img src="${producto.imagen}" alt="${producto.titulo}" width="50" height="50">
+					<strong>${producto.titulo}</strong>
+				</div>
+				<div>
+					<button class="btn btn-sm btn-outline-secondary" onclick="disminuirCantidad(${index})">-</button>
+					<span class="mx-2">${producto.cantidad}</span>
+					<button class="btn btn-sm btn-outline-secondary" onclick="aumentarCantidad(${index})">+</button>
+				</div>
+				<div>
+					$${producto.precio.toFixed(2)} x ${producto.cantidad} = $${(producto.precio * producto.cantidad).toFixed(2)}
+					<button class="btn btn-danger btn-sm ms-2" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+				</div>
+			</div>
+		`;
+		listaCarrito.appendChild(item);
+
+		subtotal += producto.precio * producto.cantidad;
+	});
+
+	subtotalElemento.innerText = subtotal.toFixed(2);
+	totalElemento.innerText = (subtotal * 1.21).toFixed(2); // Incluye IVA
 }
 
 function eliminarDelCarrito(index) {
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Recuperar el producto para devolver stock
-    const producto = productos[carrito[index].productoKey];
-    producto.stock++;
-    document.getElementById(`stock-${carrito[index].productoKey}`).textContent = producto.stock;
-    
-    // Eliminar producto por índice
-    carrito.splice(index, 1);
-    
-    // Actualizar localStorage
-    localStorage.setItem('carrito', JSON.stringify(carrito));
-    
-    // Renderizar de nuevo
-    renderizarCarrito();
+	let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	carrito.splice(index, 1);
+	localStorage.setItem('carrito', JSON.stringify(carrito));
+	renderizarCarrito();
 }
 
 function vaciarCarrito() {
-    // Restaurar stock de todos los productos
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    carrito.forEach(item => {
-        const producto = productos[item.productoKey];
-        producto.stock++;
-        document.getElementById(`stock-${item.productoKey}`).textContent = producto.stock;
-    });
-    
-    // Limpiar localStorage
-    localStorage.removeItem('carrito');
-    
-    // Renderizar
-    renderizarCarrito();
+	localStorage.removeItem('carrito');
+	renderizarCarrito();
 }
 
-function cargarCarrito() {
-    // Cargar carrito al iniciar la página
-    renderizarCarrito();
+document.addEventListener('DOMContentLoaded', renderizarCarrito);
+
+// Función para aumentar la cantidad de un producto
+function aumentarCantidad(index) {
+	let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	carrito[index].cantidad += 1; // Incrementamos la cantidad
+	localStorage.setItem('carrito', JSON.stringify(carrito));
+	renderizarCarrito(); // Actualizamos la vista del carrito
 }
 
-// Funciones de Checkout
+// Función para disminuir la cantidad de un producto
+function disminuirCantidad(index) {
+	let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	if (carrito[index].cantidad > 1) {
+		carrito[index].cantidad -= 1; // Reducimos la cantidad si es mayor a 1
+	}
+	localStorage.setItem('carrito', JSON.stringify(carrito));
+	renderizarCarrito(); // Actualizamos la vista del carrito
+}
+
+// Función para mostrar el modal de checkout
 function mostrarCheckout() {
-    const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-    
-    // Validar que hay productos en el carrito
-    if (carrito.length === 0) {
-        alert('El carrito está vacío');
-        return;
-    }
-    
-    // Mostrar modal de checkout
-    const modal = document.getElementById('checkout-modal');
-    modal.style.display = 'flex';
-    
-    // Actualizar totales en el modal
-    const subtotal = parseFloat(document.getElementById('subtotal-carrito').textContent);
-    const descuento = parseFloat(document.getElementById('descuento-carrito').textContent);
-    const iva = parseFloat(document.getElementById('iva-carrito').textContent);
-    const total = parseFloat(document.getElementById('total-carrito').textContent);
-    
-    document.getElementById('modal-subtotal').textContent = subtotal.toFixed(2);
-    document.getElementById('modal-descuento').textContent = descuento.toFixed(2);
-    document.getElementById('modal-iva').textContent = iva.toFixed(2);
-    document.getElementById('modal-total').textContent = total.toFixed(2);
+	const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+	if (carrito.length === 0) {
+			alert('El carrito está vacío. Agrega productos antes de continuar.');
+			return;
+	}
+
+	// Calcular los valores
+	let subtotal = 0;
+	carrito.forEach(producto => {
+			subtotal += producto.precio * producto.cantidad;
+	});
+
+	const descuento = subtotal > 100 ? subtotal * 0.1 : 0; // 10% de descuento si supera $100
+	const iva = (subtotal - descuento) * 0.21; // IVA 21%
+	const total = subtotal - descuento + iva;
+
+	// Mostrar valores en el modal
+	document.getElementById('modal-subtotal').innerText = subtotal.toFixed(2);
+	document.getElementById('modal-descuento').innerText = descuento.toFixed(2);
+	document.getElementById('modal-iva').innerText = iva.toFixed(2);
+	document.getElementById('modal-total').innerText = total.toFixed(2);
+
+	// Mostrar el modal
+	const modal = new bootstrap.Modal(document.getElementById('checkout-modal'));
+	modal.show();
 }
 
+// Función para realizar la compra
 function realizarCompra() {
-    // Simular compra
-    alert('¡Compra realizada con éxito!');
-    
-    // Vaciar carrito
-    localStorage.removeItem('carrito');
-    
-    // Cerrar modal
-    cerrarCheckout();
-    
-    // Renderizar carrito vacío
-    renderizarCarrito();
+	alert('¡Gracias por tu compra! El pedido ha sido procesado.');
+	localStorage.removeItem('carrito'); // Vaciar el carrito
+	location.reload(); // Recargar la página para actualizar la vista
+}
+// Diccionario de cupones válidos
+const cuponesValidos = {
+	'DESCUENTO10': 0.1, // 10% de descuento
+	'DESCUENTO20': 0.2  // 20% de descuento
+};
+
+// Variable global para almacenar el descuento actual
+let descuentoGlobal = 0;
+
+// Función para aplicar un cupón
+function aplicarCupon() {
+	const input = document.getElementById('coupon-input');
+	const cupón = input.value.trim().toUpperCase();
+
+	if (cuponesValidos[cupón]) {
+			descuentoGlobal = cuponesValidos[cupón];
+			alert(`Cupón aplicado: ${cupón} (${descuentoGlobal * 100}% de descuento)`);
+			renderizarCarrito(); // Actualiza los valores en pantalla
+	} else {
+			alert('Cupón inválido. Por favor, verifica e intenta nuevamente.');
+			descuentoGlobal = 0;
+	}
+	input.value = ''; // Limpia el campo
 }
 
-function cerrarCheckout() {
-    const modal = document.getElementById('checkout-modal');
-    modal.style.display = 'none';
+// Actualiza renderizarCarrito para incluir el descuento global
+function renderizarCarrito() {
+	const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+	const listaCarrito = document.getElementById('lista-carrito');
+	const subtotalElemento = document.getElementById('subtotal-carrito');
+	const descuentoElemento = document.getElementById('descuento-carrito');
+	const totalElemento = document.getElementById('total-carrito');
+	let subtotal = 0;
+
+	listaCarrito.innerHTML = '';
+
+	carrito.forEach((producto, index) => {
+			const item = document.createElement('li');
+			item.classList.add('list-group-item');
+			item.innerHTML = `
+					<div class="d-flex align-items-center justify-content-between">
+							<div>
+									<img src="${producto.imagen}" alt="${producto.titulo}" width="50" height="50">
+									<strong>${producto.titulo}</strong>
+							</div>
+							<div>
+									<button class="btn btn-sm btn-outline-secondary" onclick="disminuirCantidad(${index})">-</button>
+									<span class="mx-2">${producto.cantidad}</span>
+									<button class="btn btn-sm btn-outline-secondary" onclick="aumentarCantidad(${index})">+</button>
+							</div>
+							<div>
+									$${producto.precio.toFixed(2)} x ${producto.cantidad} = $${(producto.precio * producto.cantidad).toFixed(2)}
+									<button class="btn btn-danger btn-sm ms-2" onclick="eliminarDelCarrito(${index})">Eliminar</button>
+							</div>
+					</div>
+			`;
+			listaCarrito.appendChild(item);
+
+			subtotal += producto.precio * producto.cantidad;
+	});
+
+	const descuento = subtotal * descuentoGlobal; // Aplica descuento global
+	const iva = (subtotal - descuento) * 0.21; // Calcula IVA
+	const total = subtotal - descuento + iva;
+
+	subtotalElemento.innerText = subtotal.toFixed(2);
+	descuentoElemento.innerText = descuento.toFixed(2);
+	totalElemento.innerText = total.toFixed(2);
+}
+function mostrarCheckout() {
+	const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+	if (carrito.length === 0) {
+			alert('El carrito está vacío. Agrega productos antes de continuar.');
+			return;
+	}
+
+	// Calcular los valores
+	let subtotal = 0;
+	carrito.forEach(producto => {
+			subtotal += producto.precio * producto.cantidad;
+	});
+
+	const descuento = subtotal * descuentoGlobal; // Usa el descuento global
+	const iva = (subtotal - descuento) * 0.21; // IVA 21%
+	const total = subtotal - descuento + iva;
+
+	// Mostrar valores en el modal
+	document.getElementById('modal-subtotal').innerText = subtotal.toFixed(2);
+	document.getElementById('modal-descuento').innerText = descuento.toFixed(2);
+	document.getElementById('modal-iva').innerText = iva.toFixed(2);
+	document.getElementById('modal-total').innerText = total.toFixed(2);
+
+	// Mostrar el modal
+	const modal = new bootstrap.Modal(document.getElementById('checkout-modal'));
+	modal.show();
 }
