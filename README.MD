@@ -1,15 +1,51 @@
+# Proyecto: Carrito de Compras Dinámico
 
-# Ejemplo de Tienda de ventas de articulos de tecnologia
+Este proyecto es una implementación de un carrito de compras dinámico utilizando HTML, CSS, JavaScript y Bootstrap. Ofrece una experiencia interactiva para navegar por productos, agregar al carrito y gestionar la compra.
 
-Estoy desarrollando una página web para la venta de artículos de tecnología. 
+## Características Principales
 
-El proyecto ofrecerá un catálogo organizado, productos detallados, opciones de pago seguras y un diseño intuitivo para facilitar la experiencia de compra de los usuarios interesados en tecnología.
+### 1. Renderización Dinámica de Productos
+- Los productos se renderizan dinámicamente desde un array en JavaScript.
+- Cada producto incluye:
+  - Imagen
+  - Título
+  - Precio
+  - Botones:
+    - **Agregar al Carrito**
+    - **Más Información**
 
+### 2. Modal de Descripción Ampliada
+- Al hacer clic en **Más Información**, se abre un modal con:
+  - Imagen del producto
+  - Título
+  - Descripción ampliada
+  - Botón para agregar directamente al carrito desde el modal.
 
-## Screenshots
+### 3. Carrito de Compras en Offcanvas
+- El carrito se muestra como un **offcanvas** que incluye:
+  - Lista de productos añadidos.
+  - Subtotal, descuento e IVA calculados automáticamente.
+  - Botón para navegar a la página de carrito completo.
 
-Pagina de inicio
-![Inicio](https://github.com/PachecoRodrigo/JavaScriptFrontEnd/blob/main/images/Screenshots/Area%20home.jpg?raw=true)
+### 4. Página de Carrito
+- Lista detallada de productos en el carrito.
+- Funciones disponibles:
+  - Cambiar la cantidad de productos.
+  - Eliminar productos.
+  - Aplicar cupones de descuento.
+  - Vaciar el carrito.
+  - Proceder al checkout.
 
-Area de productos
-![Productos](https://github.com/PachecoRodrigo/JavaScriptFrontEnd/blob/main/images/Screenshots/Area%20productos.jpg?raw=true)
+### 5. Checkout
+- Un resumen de la compra se muestra en un modal:
+  - Subtotal
+  - Descuento
+  - IVA
+  - Total a pagar
+- Botones para confirmar o cancelar la compra.
+
+## Tecnologías Utilizadas
+- **HTML5** y **CSS3** para la estructura y estilos.
+- **Bootstrap 5** para modales, offcanvas y estilos generales.
+- **JavaScript** para la lógica del carrito y las interacciones dinámicas.
+- **LocalStorage** para guardar el estado del carrito.
