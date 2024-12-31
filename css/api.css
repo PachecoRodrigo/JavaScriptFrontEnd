@@ -1,0 +1,15 @@
+.card {
+  display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+.card img {
+object-fit: cover;
+height: 200px;
+}
+.card .btn {
+width: 100%; /* Ancho completo */
+}
+.pagination {
+justify-content: center;
+}
